@@ -40,7 +40,7 @@ const Sidebar = () => {
 export default Sidebar
 
 const SidebarContainer = styled.div`
-    background-color: var(--dark-color);
+    background-color: #161616;
     color: white;
     flex: 0.3;
     border-top: 1px solid #161616;
