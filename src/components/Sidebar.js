@@ -23,7 +23,6 @@ const Sidebar = () => {
                 <Create />
             </SidebarHeader>
 
-            <SidebarOption Icon={ExpandMore} title="Channels" />
             <hr />
             <SidebarOption Icon={Add} addChannelOption title="Add Channel" />
 
