@@ -3,9 +3,12 @@ import { useCollection } from 'react-firebase-hooks/firestore'
 import styled from 'styled-components'
 import { db } from '../firebase'
 import SidebarOption from './SidebarOption'
+import { useAuthState } from "react-firebase-hooks/auth"
+import { auth } from '../firebase';
 
 const Sidebar = () => {
     const [channels, loading, error] = useCollection(db.collection("rooms"))
+    const [user] = useAuthState(auth);
 
     return (
         <SidebarContainer>
@@ -14,7 +17,7 @@ const Sidebar = () => {
                     <h2>Chat App</h2>
                     <h3>
                         <FiberManualRecord />
-                        Dhwaj Sharma
+                        {user.displayName}
                     </h3>
                 </SidebarInfo>
                 <Create />
