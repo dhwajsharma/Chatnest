@@ -21,7 +21,7 @@ function App() {
   if (loading) {
     return (
       <AppLoading>
-        <h1>Chat App</h1>
+        <h1>Chatnest</h1>
         <Spinner
           name="ball-spin-fade-loader"
           color="white"

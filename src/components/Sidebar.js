@@ -14,7 +14,7 @@ const Sidebar = () => {
         <SidebarContainer>
             <SidebarHeader>
                 <SidebarInfo>
-                    <h2>Chat App</h2>
+                    <h2>Chatnest</h2>
                     <h3>
                         <FiberManualRecord />
                         {user.displayName}

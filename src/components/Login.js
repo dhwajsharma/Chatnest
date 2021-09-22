@@ -11,7 +11,7 @@ const Login = () => {
     return (
         <LoginContainer>
             <LoginInnerContainer>
-                <h1>Chat App</h1>
+                <h1>Chatnest</h1>
                 <Button onClick={signIn}>
                     Sign In With Google
                 </Button>
