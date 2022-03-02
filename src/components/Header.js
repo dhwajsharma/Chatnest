@@ -2,24 +2,41 @@ import { Avatar } from "@material-ui/core";
 import { AccessTime, HelpOutline, Search } from "@material-ui/icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styled from "styled-components";
-import { auth } from "../firebase";
+import { auth, provider } from "../firebase";
 import { useState } from "react";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "../firebase";
 
 const Header = () => {
   const [user] = useAuthState(auth);
   const [logout, setLogout] = useState(null);
+  const [channels] = useCollection(db.collection("rooms"));
+
+  const signIn = (e) => {
+    e.preventDefault();
+    auth.signInWithPopup(provider).catch((error) => alert(error.message));
+  };
 
   return (
     <HeaderContainer>
       <HeaderLeft>
         <HeaderAvatar alt={user?.displayName} src={user?.photoURL} />
-        <LogoutButton onClick={() => auth.signOut()}>Logout</LogoutButton>
+
+        {!user ? (
+          <LoginButton onClick={signIn}>Login</LoginButton>
+        ) : (
+          <LogoutButton onClick={() => auth.signOut()}>Logout</LogoutButton>
+        )}
+
         <AccessTime />
       </HeaderLeft>
 
       <HeaderSearch>
         <Search />
-        <input placeholder="Search" />
+        <input
+          style={{ padding: "10px", fontSize: "1.3rem" }}
+          placeholder="Search"
+        />
       </HeaderSearch>
 
       <HeaderRight>
@@ -68,6 +85,7 @@ const HeaderSearch = styled.div`
   border-radius: 6px;
   background-color: #3d3d3d;
   text-align: center;
+  align-items: center;
   display: flex;
   padding: 0 50px;
   color: gray;
@@ -96,6 +114,11 @@ const HeaderRight = styled.div`
 `;
 
 const LogoutButton = styled.div`
+  cursor: pointer;
+  margin-left: auto;
+`;
+
+const LoginButton = styled.div`
   cursor: pointer;
   margin-left: auto;
 `;
